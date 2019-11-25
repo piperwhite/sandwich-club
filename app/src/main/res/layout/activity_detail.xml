@@ -37,8 +37,8 @@
             android:text="@string/detail_also_known_as_label"
             android:textStyle="bold"/>
 
-        <TextView
-            android:id="@+id/also_known_tv"
+        <ListView
+            android:id="@+id/also_known_lv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="Pepito"/>
@@ -50,7 +50,7 @@
             android:textStyle="bold" />
 
         <ListView
-            android:id="@+id/ingredients_tv"
+            android:id="@+id/ingredients_lv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
