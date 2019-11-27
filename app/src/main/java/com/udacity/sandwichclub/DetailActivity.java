@@ -3,10 +3,7 @@ package com.udacity.sandwichclub;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.ListAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -14,8 +11,7 @@ import com.squareup.picasso.Picasso;
 import com.udacity.sandwichclub.model.Sandwich;
 import com.udacity.sandwichclub.utils.JsonUtils;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.List;
 
 public class DetailActivity extends AppCompatActivity {
 
@@ -23,8 +19,8 @@ public class DetailActivity extends AppCompatActivity {
     private static final int DEFAULT_POSITION = -1;
 
     private TextView originTv;
-    private ListView alsoKnownLv;
-    private ListView ingredientsLv;
+    private TextView alsoKnownTv;
+    private TextView ingredientsTv;
     private TextView descriptionTv;
 
     @Override
@@ -34,8 +30,8 @@ public class DetailActivity extends AppCompatActivity {
 
         ImageView ingredientsIv = findViewById(R.id.image_iv);
         originTv = findViewById(R.id.origin_tv);
-        alsoKnownLv = findViewById(R.id.also_known_lv);
-        ingredientsLv = findViewById(R.id.ingredients_lv);
+        alsoKnownTv = findViewById(R.id.also_known_tv);
+        ingredientsTv = findViewById(R.id.ingredients_tv);
         descriptionTv = findViewById(R.id.description_tv);
 
         Intent intent = getIntent();
@@ -75,11 +71,15 @@ public class DetailActivity extends AppCompatActivity {
     private void populateUI(Sandwich sandwich) {
         originTv.setText(sandwich.getPlaceOfOrigin());
         descriptionTv.setText(sandwich.getDescription());
-        ArrayAdapter<String> alsoKnownAdapter =
-                new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, sandwich.getAlsoKnownAs());
-        alsoKnownLv.setAdapter(alsoKnownAdapter);
-        ArrayAdapter<String> ingredientsAdapter =
-                new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, sandwich.getIngredients());
-        ingredientsLv.setAdapter(ingredientsAdapter);
+        alsoKnownTv.setText(getTextFromList(sandwich.getAlsoKnownAs()));
+        ingredientsTv.setText(getTextFromList(sandwich.getIngredients()));
+    }
+
+    private String getTextFromList(List<String> list) {
+        StringBuilder sb = new StringBuilder();
+        for(String s: list){
+            sb.append(s + "\n");
+        }
+        return sb.toString();
     }
 }

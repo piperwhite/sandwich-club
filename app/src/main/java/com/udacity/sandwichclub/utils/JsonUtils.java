@@ -32,7 +32,7 @@ public class JsonUtils {
     private static String getValue(String json, String name) {
         int index = json.indexOf(name);
         String substring = json.substring(index+ name.length());
-        String[] tokens = substring.split("\"");
-        return tokens[2];
+        String[] tokens = substring.split("\",");
+        return tokens[0].substring(3);
     }
 }
