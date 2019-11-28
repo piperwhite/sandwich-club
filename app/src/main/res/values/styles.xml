@@ -8,4 +8,9 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="TVStyle">
+        <!-- Customize your theme here. -->
+        <item name="android:padding">8dp</item>
+    </style>
+
 </resources>
